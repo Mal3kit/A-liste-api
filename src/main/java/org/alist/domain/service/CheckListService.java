@@ -1,7 +1,7 @@
-package org.alist.service;
+package org.alist.domain.service;
 
-import org.alist.domain.CheckList;
-import org.alist.repository.CheckListRepository;
+import org.alist.domain.model.CheckList;
+import org.alist.domain.repository.CheckListRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

@@ -1,6 +1,6 @@
-package org.alist.repository;
+package org.alist.domain.repository;
 
-import org.alist.domain.CheckList;
+import org.alist.domain.model.CheckList;
 
 public interface CheckListRepository {
     CheckList findByCheckListId(String checkListId);

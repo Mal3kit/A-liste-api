@@ -1,4 +1,4 @@
-package org.alist.domain;
+package org.alist.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

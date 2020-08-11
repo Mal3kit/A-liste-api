@@ -1,4 +1,4 @@
-package org.alist.resource;
+package org.alist.domain.resource;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

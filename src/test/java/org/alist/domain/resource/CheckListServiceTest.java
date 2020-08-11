@@ -1,37 +1,30 @@
-package org.alist.service;
+package org.alist.domain.resource;
 
-import io.quarkus.test.Mock;
 import io.quarkus.test.junit.QuarkusTest;
-import org.alist.domain.CheckList;
-import org.alist.repository.CheckListRepository;
-import org.junit.jupiter.api.BeforeAll;
+import org.alist.domain.model.CheckList;
+import org.alist.domain.repository.CheckListRepository;
+import org.alist.domain.service.CheckListService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.inject.Inject;
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@QuarkusTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CheckListServiceTest {
 
+    @Mock
     CheckListRepository checkListRepository;
 
-    @Inject
+    @InjectMocks
     CheckListService checkListService;
-
-    @BeforeAll
-    public void setUp() {
-        checkListRepository = mock(CheckListRepository.class);
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void checkListCreation_shouldBeOk() {
@@ -45,7 +38,8 @@ class CheckListServiceTest {
                 .thenReturn(checkList);
 
         // ACT
-        verify(checkListService.create(checkList)).equals(checkList);
+        assertThat(checkListService.create(checkList)).isEqualTo(checkList);
+        verify(checkListRepository).create(checkList);
 
     }
 }

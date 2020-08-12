@@ -1,17 +1,16 @@
 package org.alist.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CheckList {
-    private String id;
-    private String name;
-    private List<String> listItems;
+    public Long id;
+    public String name;
+    public List<String> listItems;
 
 }

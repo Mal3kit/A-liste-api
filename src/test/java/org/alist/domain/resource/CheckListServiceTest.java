@@ -30,7 +30,7 @@ class CheckListServiceTest {
     public void checkListCreation_shouldBeOk() {
         // ARRANGE
         final CheckList checkList = CheckList.builder()
-                .id("chekList_id")
+                .id(1L)
                 .name("chekList_name")
                 .listItems(Arrays.asList("item_a", "item_b"))
                 .build();

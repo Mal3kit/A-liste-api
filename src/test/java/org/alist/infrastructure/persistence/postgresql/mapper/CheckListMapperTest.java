@@ -47,7 +47,15 @@ class CheckListMapperTest {
                 .name(CHECKLIST_ENTITY_NAME)
                 .listItems(CHECKLIST_ENTITY_ITEMS)
                 .build();
-        CheckList checkListToTest = mapper.toModel(checkListEntity);
-        assertThat(checkListToTest).isEqualTo(checkList);
+        assertThat(mapper.toModel(checkListEntity)).isEqualTo(checkList);
+    }
+
+    @Test
+    void toEntity_shouldBeOk() {
+        CheckListEntity checkListEntity = new CheckListEntity();
+        checkListEntity.id = CHECKLIST_ID;
+        checkListEntity.name = CHECKLIST_NAME;
+        checkListEntity.listItems = CHECKLIST_ITEMS;
+        assertThat(mapper.toEntity(checkList)).isEqualTo(checkListEntity);
     }
 }

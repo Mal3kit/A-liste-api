@@ -6,6 +6,7 @@ import org.alist.domain.repository.CheckListRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @ApplicationScoped
 public class CheckListService {
@@ -15,6 +16,15 @@ public class CheckListService {
 
     @Transactional
     public CheckList create(CheckList checkList) {
-        return checkListRepository.create(checkList);
+        return checkListRepository.save(checkList);
+    }
+
+    public List<CheckList> findAll() {
+        return checkListRepository.all();
+    }
+
+    // TODO : create error if not found
+    public CheckList getOne(Long id) {
+        return checkListRepository.findByCheckListId(id).orElse(new CheckList());
     }
 }

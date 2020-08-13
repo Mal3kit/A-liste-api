@@ -2,9 +2,13 @@ package org.alist.domain.repository;
 
 import org.alist.domain.model.CheckList;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface CheckListRepository {
-    CheckList findByCheckListId(String checkListId);
+    Optional<CheckList> findByCheckListId(Long checkListId);
 
-    CheckList create(CheckList checkList);
+    CheckList save(CheckList checkList);
 
+    List<CheckList> all();
 }

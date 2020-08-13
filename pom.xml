@@ -34,10 +34,17 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
+
+<!--                    W E B                             -->
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy</artifactId>
+      <artifactId>quarkus-rest-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
 
 <!--                    T O O L S                             -->

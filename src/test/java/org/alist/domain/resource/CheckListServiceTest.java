@@ -1,6 +1,5 @@
 package org.alist.domain.resource;
 
-import io.quarkus.test.junit.QuarkusTest;
 import org.alist.domain.model.CheckList;
 import org.alist.domain.repository.CheckListRepository;
 import org.alist.domain.service.CheckListService;
@@ -34,12 +33,12 @@ class CheckListServiceTest {
                 .name("chekList_name")
                 .listItems(Arrays.asList("item_a", "item_b"))
                 .build();
-        when(checkListRepository.create(any(CheckList.class)))
+        when(checkListRepository.save(any(CheckList.class)))
                 .thenReturn(checkList);
 
         // ACT
         assertThat(checkListService.create(checkList)).isEqualTo(checkList);
-        verify(checkListRepository).create(checkList);
+        verify(checkListRepository).save(checkList);
 
     }
 }

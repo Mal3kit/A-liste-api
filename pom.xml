@@ -21,6 +21,9 @@
     <mockito-junit-jupiter-version>3.4.6</mockito-junit-jupiter-version>
     <assertj-core-version>3.16.1</assertj-core-version>
     <mapstruct-version>1.3.1.Final</mapstruct-version>
+    <microshed-testing-version>0.9</microshed-testing-version>
+    <testcontainers-postgres-version>1.14.3</testcontainers-postgres-version>
+    <perso-maven-home></perso-maven-home>
   </properties>
 
   <dependencyManagement>
@@ -38,6 +41,10 @@
   <dependencies>
 
 <!--                    W E B                             -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-rest-client</artifactId>
@@ -97,6 +104,16 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj-core-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${testcontainers-postgres-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-quarkus</artifactId>
+      <version>${microshed-testing-version}</version>
     </dependency>
   </dependencies>
 

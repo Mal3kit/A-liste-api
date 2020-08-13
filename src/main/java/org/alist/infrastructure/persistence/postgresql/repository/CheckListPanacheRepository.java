@@ -12,14 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
-public class CheckListPanacheRepository implements CheckListRepository, PanacheRepositoryBase<CheckListEntity, String> {
+public class CheckListPanacheRepository implements CheckListRepository, PanacheRepositoryBase<CheckListEntity, Long> {
     @Inject
     CheckListMapper checkListMapper;
 
     @Override
     public Optional<CheckList> findByCheckListId(Long checkListId) {
-        return find("id", checkListId)
-                .firstResultOptional()
+        return findByIdOptional(checkListId)
                 .map(checkListMapper::toModel);
     }
 

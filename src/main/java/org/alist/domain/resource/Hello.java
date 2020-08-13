@@ -1,4 +1,4 @@
-package org.alist.resource;
+package org.alist.domain.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

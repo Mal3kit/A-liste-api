@@ -5,16 +5,17 @@ import org.alist.domain.model.CheckList;
 import org.alist.domain.repository.CheckListRepository;
 import org.alist.infrastructure.persistence.postgresql.config.PostgresOnlyTestEnvironment;
 import org.alist.infrastructure.persistence.postgresql.config.WithTransaction;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.microshed.testing.SharedContainerConfig;
 import org.microshed.testing.jupiter.MicroShedTest;
 
 import javax.inject.Inject;
-
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @MicroShedTest
 @QuarkusTest
@@ -24,7 +25,6 @@ class CheckListPanacheRepositoryTest implements WithTransaction {
 
     @Inject
     CheckListRepository checkListRepository;
-
 
     @Test
     @Order(1)

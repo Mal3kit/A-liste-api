@@ -2,6 +2,7 @@ package org.alist.api.resource;
 
 import org.alist.api.dto.CheckListDTO;
 import org.alist.api.mapper.CheckListMapper;
+import org.alist.domain.exceptions.NotFoundException;
 import org.alist.domain.model.CheckList;
 import org.alist.domain.service.CheckListService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -14,6 +15,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Objects;
 
 @Path("/checklist")
 @Produces(MediaType.APPLICATION_JSON)
@@ -28,11 +30,16 @@ public class CheckListResource {
     @GET
     @Operation(description = "Retrieve all checklists")
     @APIResponses({
-            @APIResponse(responseCode = "200", description = "All checklists successfully returned")
+            @APIResponse(responseCode = "200", description = "All checklists successfully returned"),
+            @APIResponse(responseCode = "204", description = "No checklists")
     })
-    public List<CheckListDTO> findAllCheckLists() {
+    public Response findAllCheckLists() {
         final List<CheckList> allCheckLists = checkListService.findAll();
-        return checkListMapper.toDTOs(allCheckLists);
+        if (Objects.isNull(allCheckLists) || allCheckLists.size() == 0) {
+            return Response.noContent().build();
+        } else {
+            return Response.ok(checkListMapper.toDTOs(allCheckLists)).build();
+        }
     }
 
     @GET
@@ -40,11 +47,15 @@ public class CheckListResource {
     @Operation(description = "Get a checklist using its id")
     @APIResponses({
             @APIResponse(responseCode = "200", description = "Checklist successfully returned"),
-            @APIResponse(responseCode = "404", description = "Checklist not found for given id")
+            @APIResponse(responseCode = "204", description = "Checklist not found for given id")
     })
-    public CheckListDTO findById(@PathParam("checkListId") Long checkListId) {
+    public Response findById(@PathParam("checkListId") Long checkListId) throws NotFoundException {
         final CheckList checkList = checkListService.getOne(checkListId);
-        return checkListMapper.toDTO(checkList);
+        if (Objects.isNull(checkList)) {
+            return Response.noContent().build();
+        } else {
+            return Response.ok(checkListMapper.toDTO(checkList)).build();
+        }
     }
 
     @POST
